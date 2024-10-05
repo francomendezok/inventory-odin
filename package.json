@@ -5,6 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.mjs",
+    "start_dev": "DEVELOPMENT=true node app.mjs",
+    "start_prod": "DEVELOPMENT=false node app.mjs",
     "server": "sudo service postgresql start"
   },
   "keywords": [],
