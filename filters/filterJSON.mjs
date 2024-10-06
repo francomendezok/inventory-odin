@@ -36,5 +36,4 @@ function filter() {
     });
 }
 
-// Exportar la función
 export default filter

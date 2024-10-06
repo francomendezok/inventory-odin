@@ -14,6 +14,7 @@ async function filterProducts() {
             if (err) return reject(err); 
             
             const nude = JSON.parse(data);
+            const sizes = ['XS','S','M','L','XL','XXL']
 
             nude.forEach(product => {
                 let singleProduct = {
@@ -23,11 +24,11 @@ async function filterProducts() {
                     color: '',
                     price:''
                 }
-                if (product.variants[0].option1 && product.variants[0].option2) {
-                    singleProduct.name = product.title
-                    singleProduct.categorie = product.product_type
-                    singleProduct.size = product.variants[0].option1 
-                    singleProduct.color = product.variants[0].option2 
+                if (sizes.includes(product.variants[0].option1) && product.variants[0].option2 && product.product_type) {
+                    singleProduct.name = product.title.toUpperCase()
+                    singleProduct.categorie = product.product_type.toUpperCase()
+                    singleProduct.size = product.variants[0].option1.toUpperCase() 
+                    singleProduct.color = product.variants[0].option2.toUpperCase() 
                     singleProduct.price = product.variants[0].price
                     products.push(singleProduct)
                 }
@@ -36,11 +37,5 @@ async function filterProducts() {
         })
     }
 )}
-
-(async () => {
-    const result = await filterProducts();
-    console.log(result);
-    
-})();
 
 export default filterProducts
