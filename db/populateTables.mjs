@@ -17,7 +17,7 @@ const colorValues = colors_categories.finalColors
     .map(color => `('${color}')`) 
     .join(", "); 
 
-const categorieValues = colors_categories.finalColors
+const categorieValues = colors_categories.finalCategories
     .map(cat => `('${cat}')`) 
     .join(", "); 
 
@@ -25,7 +25,6 @@ const categorieValues = colors_categories.finalColors
         DELETE FROM sizes;
         DELETE FROM categories;
         DELETE FROM colors;
-        DELETE FROM genders;
 
         INSERT INTO sizes (size) VALUES 
         ('XS'),
@@ -34,10 +33,6 @@ const categorieValues = colors_categories.finalColors
         ('L'),
         ('XL'),
         ('XXL');
-
-        INSERT INTO genders (gender) VALUES 
-        ('male'),
-        ('female');
 
         INSERT INTO colors (color) VALUES 
         ${colorValues};

@@ -1,6 +1,12 @@
-DROP TYPE IF EXISTS sizes CASCADE;
-DROP TYPE IF EXISTS genders CASCADE;
-DROP TYPE IF EXISTS actions CASCADE;
+DROP TABLE IF EXISTS transactions CASCADE;
+DROP TABLE IF EXISTS products CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
+DROP TABLE IF EXISTS colors CASCADE;
+DROP TABLE IF EXISTS sizes CASCADE;
+
+DROP TYPE IF EXISTS sizesType CASCADE;
+DROP TYPE IF EXISTS gendersType CASCADE;
+DROP TYPE IF EXISTS actionsType CASCADE;
 
 CREATE TYPE sizesType AS ENUM ('XS', 'S', 'M', 'L', 'XL', 'XXL');
 CREATE TYPE gendersType AS ENUM ('male', 'female');
@@ -12,10 +18,6 @@ CREATE TABLE IF NOT EXISTS sizes (
     size sizesType NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS genders (
-    id SERIAL PRIMARY KEY,
-    gender gendersType NOT NULL
-);
 
 CREATE TABLE IF NOT EXISTS colors (
     id SERIAL PRIMARY KEY,
@@ -33,12 +35,10 @@ CREATE TABLE IF NOT EXISTS products (
     categorieID INT NOT NULL,
     sizeID INT NOT NULL,
     colorID INT NOT NULL,
-    genderID INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (categorieID) REFERENCES categories(id),
     FOREIGN KEY (sizeID) REFERENCES sizes(id),
-    FOREIGN KEY (colorID) REFERENCES colors(id),
-    FOREIGN KEY (genderID) REFERENCES genders(id)
+    FOREIGN KEY (colorID) REFERENCES colors(id)
 );
 
 CREATE TABLE IF NOT EXISTS transactions (
