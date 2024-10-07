@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Nude Inventory Project</title>
 </head>
 <body>
     <%- include('header') %>
-
     <main>
-        <h2>main section</h2>
-    </main>
+            <% products.forEach(function(product) { %>
+                <div class="product-box">
+                    <p><%= product.name %></p>
+                    <p>Categorie: <%= product.categorie %></p>
+                    <p>Size: <%= product.size %></p>
+                    <p>Color: <%= product.color %></p>
+                    <p>$<%= product.price %></p>
+                </div>
+            <% }); %>
 
+    </main>
     <%- include('footer') %>
 </body>
 </html>
+

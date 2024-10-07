@@ -46,8 +46,8 @@ async function populateProducts () {
     } catch (err) {
         console.error('Error ejecutando la consulta:', err.stack);
     } finally {
-        console.log('Conexión cerrada');
-        await pool.end();  // Cerrar la conexión al final del proceso
+        console.log('End conection');
+        await pool.end();  
     }
 }
 
