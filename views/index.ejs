@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Nude Inventory Project</title>
+    <script>
+        function redirectToItem(id) {
+            // Redirige a la URL /item/id
+            window.location.href = `/item/${id}`;
+        }
+    </script>
 </head>
 <body>
     <%- include('header') %>
     <main>
             <% products.forEach(function(product) { %>
-                <div class="product-box">
+                <div class="product-box" data-id="<%= product.id %>" onclick="redirectToItem('<%= product.id %>')">
                     <p><%= product.name %></p>
                     <p>Categorie: <%= product.categorie %></p>
                     <p>Size: <%= product.size %></p>

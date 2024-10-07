@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nude Inventory Project</title>
+    <title><%= item.name %></title>
 </head>
 <body>
     <%- include('header') %>
 
     <main>
-        <h2>Item Section</h2>
+        <div id="item">
+            <p><%= item.name %></p>
+            <p><%= item.categorie %></p>
+            <p><%= item.size %></p>
+            <p><%= item.color %></p>
+            <p >$<%= item.price %></p>
+        </div>
     </main>
 
     <%- include('footer') %>
