@@ -8,7 +8,7 @@
 <body>
     <%- include('header') %>
 
-    <main>
+    <main class="edit-main">
         <h1>Edit Item</h1>
         <form action="" method="post" class="edit-form">
             <input type="hidden" name="id" value="<%= item.id %>">
@@ -18,7 +18,7 @@
             <input type="text" name="editSize" placeholder="Size (XS,S,M,L,XL,XXL)" value="<%= item.size %>">
             <label for="editPrice">Price</label>
             <input type="number" name="editPrice" placeholder="Price" value="<%= item.price %>">
-            <button type="submit">Change info</button>
+            <button type="submit" id="change-info">Change info</button>
         </form>
     </main>
 

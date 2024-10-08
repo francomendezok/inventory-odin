@@ -14,17 +14,17 @@
 <body>
     <%- include('header') %>
 
-    <main>
-        <div id="item" data-id="<%= item.id %>" onclick="redirectToEdit('<%= item.id %>')">
+    <main class="edit-main">
+        <div id="item" data-id="<%= item.id %>">
             <p><%= item.name %></p>
             <p><%= item.categorie %></p>
             <p><%= item.size %></p>
             <p><%= item.color %></p>
             <p >$<%= item.price %></p>
-            <div>
-                <button>Edit</button>
-                <button>Delete</button>
-            </div>
+        </div>
+        <div id="edit-box" data-id="<%= item.id %>" onclick="redirectToEdit('<%= item.id %>')">
+            <button>Edit</button>
+            <button>Delete</button>
         </div>
     </main>
 
