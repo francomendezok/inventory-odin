@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= item.name %></title>
+</head>
+<body>
+    <%- include('header') %>
+
+    <main>
+        <h1>Edit Item</h1>
+        <form action="" method="post" class="edit-form">
+            <input type="hidden" name="id" value="<%= item.id %>">
+            <label for="editName">Name</label>
+            <input type="text" name="editName" placeholder="Name" value="<%= item.name %>">
+            <label for="editSize">Size</label>
+            <input type="text" name="editSize" placeholder="Size (XS,S,M,L,XL,XXL)" value="<%= item.size %>">
+            <label for="editPrice">Price</label>
+            <input type="number" name="editPrice" placeholder="Price" value="<%= item.price %>">
+            <button type="submit">Change info</button>
+        </form>
+    </main>
+
+    <%- include('footer') %>
+</body>
+</html>

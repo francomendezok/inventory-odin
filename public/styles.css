@@ -111,7 +111,7 @@ main {
     justify-content: space-around;
 }
 
-.product-box {
+.product-box, #item, .edit-form {
     border: 9px double #000000;
     background: #ffffff;
     margin: 1rem;
@@ -136,4 +136,8 @@ main {
     color: white;
     border: 9px double #ffffff;
 }
+
+
+
+
 

@@ -4,17 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= item.name %></title>
+    <script>
+        function redirectToEdit(id) {
+            // Redirige a la URL /item/id
+            window.location.href = `/edit/${id}`;
+        }
+    </script>
 </head>
 <body>
     <%- include('header') %>
 
     <main>
-        <div id="item">
+        <div id="item" data-id="<%= item.id %>" onclick="redirectToEdit('<%= item.id %>')">
             <p><%= item.name %></p>
             <p><%= item.categorie %></p>
             <p><%= item.size %></p>
             <p><%= item.color %></p>
             <p >$<%= item.price %></p>
+            <div>
+                <button>Edit</button>
+                <button>Delete</button>
+            </div>
         </div>
     </main>
 
