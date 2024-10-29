@@ -6,14 +6,14 @@
     <title>Nude Inventory Project</title>
     <script>
         function redirectToItem(id) {
-            // Redirige a la URL /item/id
+            // redirect URL /item/id
             window.location.href = `/item/${id}`;
         }
     </script>
 </head>
 <body>
-    <%- include('header') %>
-    <main>
+    <%- include('header', { categories: categories }) %>
+    <main id="all-products">
             <% products.forEach(function(product) { %>
                 <div class="product-box" data-id="<%= product.id %>" onclick="redirectToItem('<%= product.id %>')">
                     <p><%= product.name %></p>

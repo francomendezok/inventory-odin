@@ -3,8 +3,8 @@ import db from '../db/queries.mjs'
 
 const getIndex = expressAsyncHandler(async (req, res) => {
     const products = await db.getAllData()
-    
-    res.render("index", {products: products});    
+    const categories = await db.getAllCategories()
+    res.render("index", {products: products, categories: categories});    
 })
 
 export default {getIndex}

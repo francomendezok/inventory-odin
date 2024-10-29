@@ -100,6 +100,32 @@ body, html {
     justify-content: center;
 }
 
+header {
+    width: 75%;
+    text-align: center;
+}
+
+nav {
+    margin-top: 2rem;
+}
+
+nav > p {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+li:hover {
+    transform: scale(1.05);
+    transition: ease-in-out;
+    color: rgb(70, 26, 214);
+}
 
 main {
     width: 90vw;
@@ -109,6 +135,11 @@ main {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
+}
+
+#all-products {
+    width: 75%;
+    border: 4px double black;
 }
 
 .product-box, #item, .edit-form {

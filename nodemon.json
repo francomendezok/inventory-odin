@@ -1,0 +1,10 @@
+{
+  "watch": [
+    "app.mjs",
+    "routes/**/*.mjs",
+    "controllers/**/*.mjs",
+    "views/**/*.ejs",
+    "public/**/*.*"
+  ],
+  "ext": "js,mjs,ejs,json"
+}

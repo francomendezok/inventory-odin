@@ -23,7 +23,7 @@ async function getAllData() {
     }
 }
 
-async function getItem (id) {
+async function getItem(id) {
     try {
         const SQL = `
             SELECT 
@@ -38,7 +38,6 @@ async function getItem (id) {
         
         const { rows } = await pool.query(SQL, [id]);  // Usar consultas parametrizadas
         const item = rows[0]; // El primer resultado de la consulta
-        console.log(item);
         
         return item
     }
@@ -50,5 +49,49 @@ async function getItem (id) {
     }
 }
 
+async function getAllCategories() {
+    try {
+        const SQL = `
+            SELECT * FROM categories;
+            `;
 
-export default { getAllData, getItem };
+        const { rows } = await pool.query(SQL);
+        return rows
+    }
+    catch (error) {
+        console.log(error.stack)
+    }
+    finally {
+        console.log('query categories ended')
+    }
+}
+
+async function getProductsFromCategories(categorieName) {
+    try {
+        const SQL = `
+            SELECT 
+                products.id,
+                products.name, 
+                categories.categorie AS categorie,
+                sizes.size AS size,
+                colors.color AS color,
+                products.price
+            FROM products
+            JOIN categories ON products.categorieID = categories.id
+            JOIN sizes ON products.sizeID = sizes.id
+            JOIN colors ON products.colorID = colors.id
+            WHERE categories.categorie = $1;
+        `;
+
+        const { rows } = await pool.query(SQL, [categorieName]);
+        return rows;  
+    } catch (error) {
+        console.error(error.stack);
+    } finally {
+        console.log('Query for products by category ended');
+    }
+}
+
+
+
+export default { getAllData, getItem, getAllCategories, getProductsFromCategories };

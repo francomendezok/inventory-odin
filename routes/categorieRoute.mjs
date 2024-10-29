@@ -3,6 +3,6 @@ import categorieController from '../controllers/categorieController.mjs'
 
 const router = express.Router()
 
-router.get('/', categorieController.getCategorie)
+router.get('/:categorie', categorieController.getCategorie)
 
 export default router
