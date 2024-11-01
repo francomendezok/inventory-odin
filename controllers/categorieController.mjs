@@ -9,7 +9,7 @@ const getCategorie = expressAsyncHandler(async (req, res) => {
     if (products.length) {
         res.render("category", { categories: categories, products: products }); 
     } else {
-        res.status(404).send('No products found for this category'); 
+        res.render("no-category", { categories: categories, categorie: categorie }); 
     }
 });
 

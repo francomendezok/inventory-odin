@@ -3,6 +3,7 @@ import indexRoute from './routes/indexRoute.mjs';
 import categorieRoute from './routes/categorieRoute.mjs';
 import itemRoute from './routes/itemRoute.mjs';
 import editRoute from './routes/editRoute.mjs';
+import createRoute from './routes/createRoute.mjs';
 
 const app = express();
 const PORT = 3000;
@@ -18,6 +19,7 @@ app.use('/', indexRoute);
 app.use('/category', categorieRoute);
 app.use('/item', itemRoute);
 app.use('/edit', editRoute);
+app.use('/create', createRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}!`)});

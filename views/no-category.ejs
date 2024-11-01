@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Nude Inventory Project</title>
+    <script>
+        function redirectToCreate(categorie) {
+            // Redirige a la URL /item/id
+            window.location.href = `/create/${categorie}`;
+        }
+    </script>
+</head>
+<body>
+    <%- include('header', { categories: categories }) %>
+    <h1 id="no-product">There is no products for this category.<br></br> Choose another one or create one Item</h1>
+    <button class="btn-create" onclick="redirectToCreate('<%= categorie %>')">Create Item</button>
+    <%- include('footer') %>
+</body>
+</html>

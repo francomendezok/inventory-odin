@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Item</title>
+</head>
+<body>
+    <%- include('header', { categories: categories }) %>
+
+    <main class="edit-main">
+        <h1>Create Item in this category: <%= categorie %></h1>
+        <form action="" method="post" class="create-item-form">
+            <input type="hidden" name="id" value="">
+            <label for="createName">Name</label>
+            <input type="text" name="createName" placeholder="Name" value="">
+            <label for="createCategorie">Categorie</label>
+            <input type="text" name="createCategorie" placeholder="Categorie" value="<%= categorie %>" readonly>
+            <label for="createSize">Size</label>
+            <input type="text" name="createSize" placeholder="Size (XS,S,M,L,XL,XXL)" value="">
+            <label for="createColor">Color</label>
+            <input type="text" name="createColor" placeholder="Color:" value="">
+            <label for="createPrice">Price</label>
+            <input type="number" name="createPrice" placeholder="$" value="">
+            <button type="submit" id="create-item-submit">Create Item</button>
+        </form>
+    </main>
+
+    <%- include('footer') %>
+</body>
+</html>

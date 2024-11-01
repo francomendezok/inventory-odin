@@ -9,7 +9,9 @@
 <body>
     <header>
         <nav>
-            <p>Categories</p>
+            <div>
+                <a href="/">Home</a>
+            </div>
             <ul>
                 <% categories.forEach(category => { %>
                     <li><a href="/category/<%= category.categorie %>"><%= category.categorie %></a></li>

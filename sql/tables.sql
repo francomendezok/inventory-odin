@@ -5,11 +5,9 @@ DROP TABLE IF EXISTS colors CASCADE;
 DROP TABLE IF EXISTS sizes CASCADE;
 
 DROP TYPE IF EXISTS sizesType CASCADE;
-DROP TYPE IF EXISTS gendersType CASCADE;
 DROP TYPE IF EXISTS actionsType CASCADE;
 
 CREATE TYPE sizesType AS ENUM ('XS', 'S', 'M', 'L', 'XL', 'XXL');
-CREATE TYPE gendersType AS ENUM ('male', 'female');
 CREATE TYPE actionsType AS ENUM ('sale', 'purchase');
 
 

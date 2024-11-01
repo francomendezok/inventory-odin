@@ -53,8 +53,9 @@ export const usersCreatePost = [
 const getItem = expressAsyncHandler(async (req, res) => {
     const id = req.params.id
     const item = await db.getItem(id)
+    const categories = await db.getAllCategories()
 
-    res.render("item", { item: item });    
+    res.render("item", { item: item, categories: categories });    
 })
 
 const updateItem = [
