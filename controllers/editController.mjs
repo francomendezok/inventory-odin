@@ -3,7 +3,7 @@ import db from '../db/queries.mjs'
 
 const editItem = expressAsyncHandler(async (req, res) => {
     const id = req.params.id;
-    
+    const categories = await db.getAllCategories()
     // Verifica que estás obteniendo el item correctamente
     const item = await db.getItem(id);
     console.log(item);  // Verifica qué se obtiene aquí
@@ -13,7 +13,7 @@ const editItem = expressAsyncHandler(async (req, res) => {
         return res.status(404).send('Item not found');
     }
 
-    res.render('edit', { item: item });
+    res.render('edit', { item: item, categories: categories });
 });
 
 export default { editItem }
