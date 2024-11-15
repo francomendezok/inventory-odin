@@ -14,12 +14,14 @@ const validateNewProduct = [
     .isLength({ min: 1, max: 255 }).withMessage(`Name ${lengthErr}`),
   body("createSize").trim().toUpperCase()
     .isIn(['XS', 'S', 'M', 'L', 'XL', 'XXL']).withMessage(`Size ${sizeErr}`),
-  body("createColor").trim()
+  body("createColor").trim().toUpperCase()
     .isAlpha().withMessage(`Color ${alphaErr}`)
     .isLength({ min: 1, max: 255 }).withMessage(`Color ${lengthErr}`),
   body("createPrice").trim()
     .isNumeric().withMessage(`Price ${priceErr}`)
-    .isLength({ min: 1, max: 5 }).withMessage(`Price ${priceAmountErr}`)
+    .isLength({ min: 1, max: 5 }).withMessage(`Price ${priceAmountErr}`),
+  body("password").trim()
+    .equals("mendez9908").withMessage("Wrong password")
 ];
 
 const renderCreateItem = expressAsyncHandler(async (req, res) => {
@@ -29,14 +31,19 @@ const renderCreateItem = expressAsyncHandler(async (req, res) => {
     res.render('create', { categorie: categorie, categories: allCategories })
 })
 
+// POST METHOD // 
 const createProductInTable = [
     validateNewProduct,
     (req, res) => {
         const errors = validationResult(req)
-        if (!errors.isEmpty()) {
-            return res.status(400).send(errors.array())
+        if (!errors.isEmpty()) {            
+            return res.render('error', {error: errors.array()})
         }
-        res.redirect('/')
+        const product = req.body
+        const status = db.insertProduct(product)
+        // NEED TO check if the new product shows on category and home section UI // 
+        // NEED TO add a counter inside home and category section to see how many products there are // 
+        status ? res.redirect('/') : res.send("Error while adding product into db")
     }
 ]
 

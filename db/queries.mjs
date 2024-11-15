@@ -92,6 +92,52 @@ async function getProductsFromCategories(categorieName) {
     }
 }
 
+async function insertProduct(product) {
+    try {
+        if (pool._connected !== true) {
+            await pool.connect();
+            console.log('Conexión exitosa a PostgreSQL');
+        }
+
+        const values = [
+            product.createName,
+            product.createCategorie,
+            product.createSize,
+            product.createColor,
+            product.createPrice,
+        ]
+        // Check if color exists, if not create it on colors table and get ID //
+        // cte = Common Table Expresion, temporal table. With defines it // 
+        const SQL = `
+        WITH color_cte AS (
+        INSERT INTO colors (color)
+        SELECT $4::VARCHAR
+        WHERE NOT EXISTS (
+            SELECT 1 FROM colors WHERE color = $4::VARCHAR
+        )
+        RETURNING id
+        )
+        INSERT INTO products (name, categorieID, sizeID, colorID, price) 
+        VALUES (
+            $1, 
+            (SELECT id FROM categories WHERE categorie = $2), 
+            (SELECT id FROM sizes WHERE size = $3), 
+            COALESCE(
+                (SELECT id FROM colors WHERE color = $4::VARCHAR), 
+                (SELECT id FROM color_cte)
+            ), 
+            $5
+        );
+    `;
+
+    await pool.query(SQL, values);
+    return true
+    } catch (err) {
+    console.error('Error creating product:', err);
+    return false
+    }
+}
 
 
-export default { getAllData, getItem, getAllCategories, getProductsFromCategories };
+
+export default { getAllData, getItem, getAllCategories, getProductsFromCategories, insertProduct };
