@@ -41,8 +41,6 @@ const createProductInTable = [
         }
         const product = req.body
         const status = db.insertProduct(product)
-        // NEED TO check if the new product shows on category and home section UI // 
-        // NEED TO add a counter inside home and category section to see how many products there are // 
         status ? res.redirect('/') : res.send("Error while adding product into db")
     }
 ]
