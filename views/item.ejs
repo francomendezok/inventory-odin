@@ -9,6 +9,10 @@
             // Redirige a la URL /item/id
             window.location.href = `/edit/${id}`;
         }
+        function redirectToDelete(id) {
+            // Redirige a la URL /item/id
+            window.location.href = `/delete/${id}`;
+        }
     </script>
 </head>
 <body>
@@ -23,9 +27,9 @@
             <p><%= item.color %></p>
             <p >$<%= item.price %></p>
         </div>
-        <div id="edit-box" data-id="<%= item.id %>" onclick="redirectToEdit('<%= item.id %>')">
-            <button>Edit</button>
-            <button>Delete</button>
+        <div id="edit-box" data-id="<%= item.id %>">
+            <button onclick="redirectToEdit('<%= item.id %>')">Edit</button>
+            <button onclick="redirectToDelete('<%= item.id %>')">Delete</button>
         </div>
     </main>
 

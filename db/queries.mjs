@@ -38,6 +38,7 @@ async function getItem(id) {
         
         const { rows } = await pool.query(SQL, [id]);  // Usar consultas parametrizadas
         const item = rows[0]; // El primer resultado de la consulta
+        console.log(item);
         
         return item
     }
@@ -175,5 +176,19 @@ async function editProductInDB(product) {
     }
 }
 
+async function deleteProductInTable(id) {
+    try {
+        const SQL = `
+            DELETE FROM products
+            WHERE id = $1;`
+        
+        await pool.query(SQL, [id])
+        return true
+    } catch (error) {
+        console.log(error)
+        return false        
+    }
+}
 
-export default { getAllData, getItem, getAllCategories, getProductsFromCategories, insertProduct, editProductInDB };
+
+export default { getAllData, getItem, getAllCategories, getProductsFromCategories, insertProduct, editProductInDB, deleteProductInTable };
