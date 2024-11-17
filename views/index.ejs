@@ -13,8 +13,8 @@
 </head>
 <body>
     <%- include('header', { categories: categories }) %>
+    <span><%= products.length %></span>
     <main id="all-products">
-        <span><%= products.length %></span>
             <% products.forEach(function(product) { %>
                 <div class="product-box" data-id="<%= product.id %>" onclick="redirectToItem('<%= product.id %>')">
                     <p><%= product.name %></p>

@@ -26,7 +26,7 @@ app.listen(PORT, () => {
 
 // Create ✅
 // Read ✅
-// Update
+// Update ✅
 // Delete
 
 // Use libraries and middlewares to validate forms

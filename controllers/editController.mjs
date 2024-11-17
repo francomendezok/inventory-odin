@@ -1,20 +1,33 @@
 import expressAsyncHandler from "express-async-handler";
 import db from '../db/queries.mjs'
+import { validationResult } from "express-validator";
+import { validateUpdateProduct } from "./formValidation.mjs";
 
 const editItem = expressAsyncHandler(async (req, res) => {
     const id = req.params.id;
     const categories = await db.getAllCategories()
-    // Verifica que estás obteniendo el item correctamente
     const item = await db.getItem(id);
-    console.log(item);  // Verifica qué se obtiene aquí
 
     if (!item) {
-        // Si no se encuentra el item, envía una respuesta o muestra un error
         return res.status(404).send('Item not found');
     }
 
     res.render('edit', { item: item, categories: categories });
 });
 
-export default { editItem }
+// POST METHOD //
+const updateItem = [
+    validateUpdateProduct,
+    (req, res) => {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {            
+            return res.render('error', {error: errors.array()})
+        }
+        const product = req.body
+        const status = db.editProductInDB(product)
+        status ? res.redirect('/') : res.send("Error while editing product in db")
+    }
+]
+
+export default { editItem, updateItem }
 

@@ -10,15 +10,21 @@
 
     <main class="edit-main">
         <h1>Edit Item</h1>
-        <form action="" method="post" class="edit-form">
+        <form action="" method="post" class="create-item-form">
             <input type="hidden" name="id" value="<%= item.id %>">
             <label for="editName">Name</label>
             <input type="text" name="editName" placeholder="Name" value="<%= item.name %>">
+            <label for="editCategorie">Categorie</label>
+            <input type="text" name="editCategorie" placeholder="Categorie" value="<%= item.categorie %>" readonly>
             <label for="editSize">Size</label>
             <input type="text" name="editSize" placeholder="Size (XS,S,M,L,XL,XXL)" value="<%= item.size %>">
+            <label for="editColor">Color</label>
+            <input type="text" name="editColor" placeholder="Color:" value="<%= item.color %>">
             <label for="editPrice">Price</label>
             <input type="number" name="editPrice" placeholder="Price" value="<%= item.price %>">
-            <button type="submit" id="change-info">Change info</button>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" id="edit-item-submit">Change info</button>
         </form>
     </main>
 

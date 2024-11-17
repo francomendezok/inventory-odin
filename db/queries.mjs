@@ -138,6 +138,42 @@ async function insertProduct(product) {
     }
 }
 
+async function editProductInDB(product) {
+    try {
+        const id = product.id
+        const values = [
+            id,
+            product.editName,
+            product.editSize,
+            product.editColor,
+            product.editPrice
+        ]
+        const SQL = `
+            WITH color_cte AS (
+            INSERT INTO colors (color)
+            SELECT $4::VARCHAR
+            WHERE NOT EXISTS (
+                SELECT 1 FROM colors WHERE color = $4::VARCHAR
+            )
+            RETURNING id
+            )
+            UPDATE products
+            SET name = $2, 
+                sizeID = (SELECT id FROM sizes WHERE size = $3), 
+                colorID = COALESCE(
+                    (SELECT id FROM colors WHERE color = $4::VARCHAR), 
+                    (SELECT id FROM color_cte)
+                ),
+                price = $5
+            WHERE id = $1;`
+
+            await pool.query(SQL, values);
+            return true
+    } catch (error) {
+        console.error('Error creating product:', error);
+        return false
+    }
+}
 
 
-export default { getAllData, getItem, getAllCategories, getProductsFromCategories, insertProduct };
+export default { getAllData, getItem, getAllCategories, getProductsFromCategories, insertProduct, editProductInDB };
